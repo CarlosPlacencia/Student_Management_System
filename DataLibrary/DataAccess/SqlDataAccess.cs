@@ -28,6 +28,14 @@ namespace DataLibrary.DataAccess
             }
         }
 
+        public static List<T> LoadStudentInfo<T>(string sql, object parameters)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, parameters).ToList();
+            }
+        }
+
         // SaveStudentData()
         public static int SaveStudentData<T>(string sql, T data)
         {

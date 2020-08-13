@@ -160,5 +160,26 @@ namespace Student_Management_System.Controllers
         //    {
         //        return true;
         //    }
+
+
+        public ActionResult EditStudent(int id)
+        {
+            // Retrieve info from the database
+            var studentInfo = DLLoadStudentInfo(id);
+            StudentModel student = new StudentModel();
+
+            student.StudentID = studentInfo[0].StudentID;
+            student.FirstName = studentInfo[0].FirstName;
+            student.LastName = studentInfo[0].LastName;
+
+
+            return View(student);
+        }
+
+        [HttpPost]
+        public ActionResult EditStudent()
+        {
+            return RedirectToAction("Students");
+        }
     }
 }

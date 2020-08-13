@@ -36,10 +36,10 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.ActionLink("My Courses", "StudentCourses", new { id = item.StudentID }) |
+                @Html.ActionLink("Courses", "StudentCourses", new { id = item.StudentID }) |
                 @*@Html.ActionLink("Course Enroll", "EnrollInCourse", new { id = item.StudentID }) |*@
                 <a class="Enroll" data-toggle="modal" data-target="#flipFlop">Enroll In Course</a> |
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "EditStudent", new { id = item.StudentID }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>

@@ -33,6 +33,16 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.LoadStudentData<StudentModel>(sql);
         }
 
+        public static List<StudentModel> DLLoadStudentInfo(int id)
+        {
+            var parameters = new { StudentID = id };
+            string sql = @"SELECT StudentID, FirstName, LastName 
+                            From dbo.Students
+                            WHERE Students.StudentID = @StudentID";
+
+            return SqlDataAccess.LoadStudentInfo<StudentModel>(sql, parameters);
+        }
+
 
         // Get Available Courses
         public static List<CoursesModel> DLGetCourses()
