@@ -26,6 +26,18 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveStudentData(sql, data);
         }
 
+        public static int DLUpdateStudentInfo( int ID, string FirstName, string LastName)
+        {
+
+            var parameters = new { StudentID = ID, FirstName = FirstName, LastName = LastName };
+
+            string sql = @"UPDATE dbo.Students
+                            SET FirstName = @FirstName, LastName = @LastName
+                            WHERE StudentID = @StudentID";
+
+            return SqlDataAccess.UpdateStudentInfo(sql, parameters);
+        }
+
         // Load Student
         public static List<StudentModel> DLLoadStudents()
         {

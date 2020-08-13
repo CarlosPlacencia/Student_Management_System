@@ -45,6 +45,15 @@ namespace DataLibrary.DataAccess
             }
         }
 
+        // UpdateStudentInfo()
+        public static int UpdateStudentInfo(string sql, object parameters)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Execute(sql, parameters);
+            }
+        }
+
         // GetAvailableCourses()
         public static List<T> GetAvailableCourses<T>(string sql)
         {

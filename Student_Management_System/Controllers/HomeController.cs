@@ -177,8 +177,11 @@ namespace Student_Management_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditStudent()
+        public ActionResult EditStudent(StudentModel Newstudent)
         {
+ 
+            DLUpdateStudentInfo(Newstudent.StudentID, Newstudent.FirstName, Newstudent.LastName);
+
             return RedirectToAction("Students");
         }
     }
