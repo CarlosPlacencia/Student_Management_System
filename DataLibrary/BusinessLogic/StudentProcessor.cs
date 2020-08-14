@@ -77,11 +77,6 @@ namespace DataLibrary.BusinessLogic
                 CoursesID = CourseID
             };
 
-            //string sql = @"if not exists
-            //                    (select * from dbo.Takes where @StudentID = Takes.StudentID AND @CoursesID = Takes.CoursesID)
-            //               INSERT INTO dbo.Takes (StudentID, CoursesID)
-            //               VALUES (@StudentID, @CoursesID)";
-
             return SqlDataAccess.SaveStudentTakes(addCourse, data);
         }
 
@@ -99,6 +94,16 @@ namespace DataLibrary.BusinessLogic
                             WHERE 
 	                            Students.StudentID = @StudentID;";
             return SqlDataAccess.GetStudentsCourses<StudentCoursesModel>(sql, parameters);
+        }
+
+        public static int DLDeleteStudent(int id)
+        {
+            var parameters = new { StudentID = id };
+
+            string sql = @"DELETE FROM dbo.Students WHERE Students.StudentID = @StudentID";
+
+            return SqlDataAccess.Delete(sql, parameters);
+
         }
     }
 }

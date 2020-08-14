@@ -40,7 +40,7 @@
                 @*@Html.ActionLink("Course Enroll", "EnrollInCourse", new { id = item.StudentID }) |*@
                 <a class="Enroll" data-toggle="modal" data-target="#flipFlop">Enroll In Course</a> |
                 @Html.ActionLink("Edit", "EditStudent", new { id = item.StudentID }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "DeleteStudent", new { id = item.StudentID })
             </td>
         </tr>
     }

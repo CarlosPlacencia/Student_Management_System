@@ -82,6 +82,16 @@ namespace DataLibrary.DataAccess
                 return cnn.Query<T>(sql, parameters).ToList();
             }
         }
+
+
+        public static int Delete(string sql, object parameters)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Execute(sql, parameters);
+            }
+        }
+
     }
 
 }

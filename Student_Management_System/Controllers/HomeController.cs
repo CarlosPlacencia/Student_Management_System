@@ -184,5 +184,26 @@ namespace Student_Management_System.Controllers
 
             return RedirectToAction("Students");
         }
+
+        public ActionResult DeleteStudent(int id)
+        {
+            var studentInfo = DLLoadStudentInfo(id);
+            StudentModel student = new StudentModel();
+
+            student.StudentID = studentInfo[0].StudentID;
+            student.FirstName = studentInfo[0].FirstName;
+            student.LastName = studentInfo[0].LastName;
+
+
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDeleteStudent(StudentModel deleteStudent)
+        {
+            DLDeleteStudent(deleteStudent.StudentID);
+            return RedirectToAction("Students");
+        }
     }
 }
