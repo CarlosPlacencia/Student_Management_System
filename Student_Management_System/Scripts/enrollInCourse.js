@@ -39,7 +39,8 @@ $(".CourseSubmit").click(function () {
         error: function (response) {
         },
         success: function (response) {
-            alert(response[0].Value);
+            // Have a message display with succes
+            //alert(response[0].Value);
         }
     });
 })

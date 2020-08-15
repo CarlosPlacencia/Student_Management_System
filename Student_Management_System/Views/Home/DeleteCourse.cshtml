@@ -1,0 +1,57 @@
+﻿@model Student_Management_System.Models.StudentCoursesModel
+
+@{
+    ViewBag.Title = "DeleteCourse";
+}
+
+<h2>DeleteCourse</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudentCoursesModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassRoom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClassRoom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.CoursesID);
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "StudentCourses", new { id = Model.StudentID })
+        </div>
+    }
+</div>

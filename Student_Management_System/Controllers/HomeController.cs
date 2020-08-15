@@ -9,6 +9,7 @@ using static DataLibrary.BusinessLogic.StudentProcessor;
 using System.Web.Management;
 using System.Diagnostics;
 using System.Dynamic;
+using System.Web.UI.WebControls;
 
 namespace Student_Management_System.Controllers
 {
@@ -153,15 +154,6 @@ namespace Student_Management_System.Controllers
             return View(studentCourses);
         }
 
-
-        //    // DELETE DropCourse() → Remove Student from the takes table
-        //    [HttpDelete]
-        //    public ActionResult RemoveCourse()
-        //    {
-        //        return true;
-        //    }
-
-
         public ActionResult EditStudent(int id)
         {
             // Retrieve info from the database
@@ -204,6 +196,37 @@ namespace Student_Management_System.Controllers
         {
             DLDeleteStudent(deleteStudent.StudentID);
             return RedirectToAction("Students");
+        }
+
+        public ActionResult DeleteCourse(int CourseID, int StudentID)
+        {
+            // get the info for the course
+            var courseInfo = DLGetCourse(CourseID);
+            // Create a model that has both the courseID and studentID and send that to the View()
+            StudentCoursesModel course = new StudentCoursesModel();
+
+            course.StudentID = StudentID;
+            foreach (var row in courseInfo)
+            {
+                course.CoursesID = row.CoursesID;
+                course.CourseName = row.Name;
+                course.StartTime = row.StartTime.ToString("hh:mm tt");
+                course.EndTime = row.EndTime.ToString("hh:mm tt");
+                course.ClassRoom = row.ClassRoom;
+            }
+            // In the view just display the Course info hide the CourseID and StudentId
+
+            return View(course);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCourse(StudentCoursesModel deleteCourse)
+        {
+            // Pass the StudentID and CourseID to be Deleted form the takes table
+            DLDeleteCourse(deleteCourse.StudentID, deleteCourse.CoursesID);
+
+            return RedirectToAction("StudentCourses", new { id = deleteCourse.StudentID });
         }
     }
 }

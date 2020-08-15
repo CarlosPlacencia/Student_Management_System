@@ -64,6 +64,16 @@ namespace DataLibrary.DataAccess
             }
         }
 
+        // Gives you info for one specific course
+        public static List<T> GetAvailableCourse<T>(string sql, object parameters)
+        {
+
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, parameters).ToList();
+            }
+        }
+
 
         // Save Students Course
         // SaveStudentData()

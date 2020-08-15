@@ -65,7 +65,16 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.GetAvailableCourses<CoursesModel>(sql);
         }
 
+        // Get Course Specific info
+        public static List<CoursesModel> DLGetCourse(int courseID)
+        {
+            var parameters = new { courseID = courseID };
+            string sql = @"SELECT CoursesID, Name, StartTime, EndTime, ClassRoom
+                            FROM dbo.Courses
+                            WHERE Courses.CoursesID = @courseID";
 
+            return SqlDataAccess.GetAvailableCourse<CoursesModel>(sql, parameters);
+        }
         // Enroll Student To Course
         public static int DLEnrollCourse(int StudentID, int CourseID)
         {
@@ -101,6 +110,17 @@ namespace DataLibrary.BusinessLogic
             var parameters = new { StudentID = id };
 
             string sql = @"DELETE FROM dbo.Students WHERE Students.StudentID = @StudentID";
+
+            return SqlDataAccess.Delete(sql, parameters);
+
+        }
+
+        public static int DLDeleteCourse(int StudentID, int CoursesID)
+        {
+            var parameters = new { StudentID = StudentID, CoursesID = CoursesID };
+
+            string sql = @"DELETE FROM dbo.Takes 
+                            WHERE Takes.StudentID = @StudentID AND Takes.CoursesID = @CoursesID ";
 
             return SqlDataAccess.Delete(sql, parameters);
 

@@ -17,6 +17,7 @@ namespace DataLibrary.Models
 
             public DateTime EndTime { get; set; }
 
+            public int ClassRoom { get; set; }
         }
 
 }

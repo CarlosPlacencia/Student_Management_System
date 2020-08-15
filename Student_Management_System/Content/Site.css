@@ -26,3 +26,7 @@ textarea {
 #CourseTime{
     color: black;
 }
+
+.Enroll{
+    cursor: pointer;
+}
