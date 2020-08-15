@@ -1,5 +1,5 @@
 # Student_Management_System
-* A registration system where a user can register a student for a class.
+* A registration system where a user can register students to classes.
 
 # Technologies
 * C#
